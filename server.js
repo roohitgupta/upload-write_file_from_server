@@ -1,13 +1,13 @@
 const express = require("express")
-const GetPrice = require("./controller/controller")
+// const { GetPrice } = require("./controller/controller")
 
 const app = express();
 app.use(express.json());
 
 const Router = express.Router();
 
-app.use("https://api.storerestapi.com/products", Router)
-Router.get("/:product_id", GetPrice)
+// app.use("/https://api.storerestapi.com/products", Router)
+// Router.get("/find/title", GetPrice)
 
 
 
