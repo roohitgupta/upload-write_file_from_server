@@ -1,22 +1,32 @@
 const express = require("express");
 const XLSX = require("xlsx");
 var workbook = XLSX.readFile("product_list.xlsx");
-// const { GetPrice } = require("./controller/controller")
+const axios = require('axios');
 
 const app = express();
 app.use(express.json());
 
-// const Router = express.Router();
 
-// app.use("/https://api.storerestapi.com/products", Router)
-// Router.get("/find/title", GetPrice)
+const getData = (name)=> {
+    axios.get(`https://api.storerestapi.com/products/${name}`)
+    .then((res)=> {
+        const response = res.data;
+        console.log(response.data.title, response.data.price);
+    }).catch(err => console.log(err));
+};
+
 
 let worksheet = workbook.Sheets[workbook.SheetNames[0]];
-
 for(let i=2; i<11; i++){
     const name = worksheet[`A${i}`].v;
-    console.log(name);
-}
+    // console.log(name);
+    getData(name);
+};
+
+
+
+
+
 
 
 
